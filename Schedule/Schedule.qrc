@@ -1,4 +1,6 @@
 <RCC>
-    <qresource prefix="Schedule">
+    <qresource prefix="/Schedule"/>
+    <qresource prefix="/ico">
+        <file>resources/ico/tray-icon.png</file>
     </qresource>
 </RCC>
