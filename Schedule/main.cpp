@@ -14,7 +14,7 @@
 #include <QWidget>
 #include <string>
 #include <windows.h>
-#include "configData.h"
+#include "ConfigData.h"
 #include "ConfigDialog.h"
 
 // 自定义事件处理器类，用于处理 Toast 通知的点击和关闭事件

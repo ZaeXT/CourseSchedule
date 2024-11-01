@@ -65,6 +65,9 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
   </PropertyGroup>
+  <PropertyGroup Label="Vcpkg">
+    <VcpkgEnableManifest>true</VcpkgEnableManifest>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Link>
       <AdditionalDependencies>%(AdditionalDependencies);$(Qt_LIBS_)</AdditionalDependencies>
@@ -108,6 +111,7 @@
       <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">input</DynamicSource>
       <QtMocFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(Filename).moc</QtMocFileName>
     </ClCompile>
+    <ClCompile Include="ConfigManager.cpp" />
     <ClCompile Include="Schedule.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -115,7 +119,8 @@
     <QtMoc Include="ConfigDialog.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="configData.h" />
+    <ClInclude Include="ConfigData.h" />
+    <QtMoc Include="ConfigManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

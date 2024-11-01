@@ -43,14 +43,20 @@
     <ClCompile Include="ConfigDialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ConfigManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="ConfigDialog.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="ConfigManager.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="configData.h">
+    <ClInclude Include="ConfigData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
