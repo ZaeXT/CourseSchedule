@@ -18,20 +18,20 @@ jobs:
     
     # 安装 vcpkg
     - name: Setup vcpkg
-      uses: microsoft/vcpkg-action@v1
-      with:
-        vcpkg_version: 'latest'
+      run: |
+        git clone https://github.com/microsoft/vcpkg.git
+        cd vcpkg; .\bootstrap-vcpkg.bat
+        .\vcpkg.exe integrate install
+        cd ..
 
     # 安装 Qt6 和其他依赖
     - name: Install Qt6 using vcpkg
       run: |
-        .\vcpkg install qt6-base qt6-tools qt6-qml
+        .\vcpkg install qt6-base qt6-tools qt6-qml qt6-json
 
     # 安装 Visual Studio (如果 GitHub Actions 上的 Windows 环境没有预装)
     - name: Setup MSBuild and Visual Studio
-      uses: actions/setup-msbuild@v1
-      with:
-        msbuild-version: 'latest'
+      uses: microsoft/setup-msbuild@v2
 
     # 安装 vcpkg 依赖
     - name: Install dependencies from vcpkg.json
