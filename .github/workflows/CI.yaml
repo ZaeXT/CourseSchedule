@@ -27,7 +27,7 @@ jobs:
     - name: Setup Qt6
       uses: jurplel/install-qt-action@v4.1.1
       with:
-        version: 6.8.0
+        version: 6.6.0
 
     # 安装 Visual Studio (如果 GitHub Actions 上的 Windows 环境没有预装)
     - name: Setup MSBuild and Visual Studio
@@ -45,6 +45,8 @@ jobs:
         echo "PATH=$(pwd)/vcpkg/vcpkg:$PATH" >> $GITHUB_ENV
         echo "CXXFLAGS=-I$(pwd)/vcpkg/vcpkg/installed/x64-windows/include" >> $GITHUB_ENV
         echo "LIBS=-L$(pwd)/vcpkg/vcpkg/installed/x64-windows/lib" >> $GITHUB_ENV
+        echo "QT_INSTALL_DIR=$QT_ROOT_DIR" >> $GITHUB_ENV
+        echo "PATH=$QT_ROOT_DIR/bin;$PATH" >> $GITHUB_ENV
 
     # 使用 MSBuild 构建项目
     - name: Build project using MSBuild
