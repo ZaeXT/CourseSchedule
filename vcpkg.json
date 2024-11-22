@@ -1,5 +1,9 @@
 {
   "dependencies": [
-    "wintoast"
+    "wintoast",
+    "qt6-base",
+    "qt6-tools",
+    "qt6-qml",
+    "qt6-json"
   ]
 }
