@@ -49,6 +49,7 @@ jobs:
         echo "LIBS=-L$(pwd)/vcpkg/vcpkg/installed/x64-windows/lib" >> $GITHUB_ENV
         echo "QTDIR=$QT_ROOT_DIR" >> "$GITHUB_ENV"
         echo "QtToolsPath=$QT_ROOT_DIR/bin" >> "$GITHUB_ENV"
+        echo "IS_ACTION=true" >> "$GITHUB_ENV"
 
     # 使用 MSBuild 构建项目
     - name: Build project using MSBuild
