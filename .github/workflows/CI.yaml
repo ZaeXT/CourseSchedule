@@ -37,7 +37,7 @@ jobs:
     - name: Install dependencies from vcpkg.json
       run: |
         cd vcpkg
-        .\vcpkg install --config-path .\vcpkg.json
+        .\vcpkg install --config-path ..\vcpkg.json
 
     # 设置 MSBuild 环境变量
     - name: Setup environment variables
