@@ -22,11 +22,11 @@ jobs:
         git clone https://github.com/microsoft/vcpkg.git
         cd vcpkg; .\bootstrap-vcpkg.bat
         .\vcpkg.exe integrate install
-        cd ..
 
     # 安装 Qt6 和其他依赖
     - name: Install Qt6 using vcpkg
       run: |
+        cd vcpkg
         .\vcpkg install qt6-base qt6-tools qt6-qml qt6-json
 
     # 安装 Visual Studio (如果 GitHub Actions 上的 Windows 环境没有预装)
@@ -36,15 +36,16 @@ jobs:
     # 安装 vcpkg 依赖
     - name: Install dependencies from vcpkg.json
       run: |
+        cd vcpkg
         .\vcpkg install --config-path .\vcpkg.json
 
     # 设置 MSBuild 环境变量
     - name: Setup environment variables
       run: |
-        echo "VCPKG_ROOT=$(pwd)/vcpkg" >> $GITHUB_ENV
-        echo "PATH=$(pwd)/vcpkg:$PATH" >> $GITHUB_ENV
-        echo "CXXFLAGS=-I$(pwd)/vcpkg/installed/x64-windows/include" >> $GITHUB_ENV
-        echo "LIBS=-L$(pwd)/vcpkg/installed/x64-windows/lib" >> $GITHUB_ENV
+        echo "VCPKG_ROOT=$(pwd)/vcpkg/vcpkg" >> $GITHUB_ENV
+        echo "PATH=$(pwd)/vcpkg/vcpkg:$PATH" >> $GITHUB_ENV
+        echo "CXXFLAGS=-I$(pwd)/vcpkg/vcpkg/installed/x64-windows/include" >> $GITHUB_ENV
+        echo "LIBS=-L$(pwd)/vcpkg/vcpkg/installed/x64-windows/lib" >> $GITHUB_ENV
 
     # 使用 MSBuild 构建项目
     - name: Build project using MSBuild
