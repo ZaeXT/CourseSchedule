@@ -23,6 +23,12 @@ jobs:
         cd vcpkg; .\bootstrap-vcpkg.bat
         .\vcpkg.exe integrate install
 
+    # 安装 Qt
+    - name: Setup Qt6
+      uses: jurplel/install-qt-action@v4.1.1
+      with:
+        version: 6.8.0
+
     # 安装 Visual Studio (如果 GitHub Actions 上的 Windows 环境没有预装)
     - name: Setup MSBuild and Visual Studio
       uses: microsoft/setup-msbuild@v2
