@@ -1,0 +1,52 @@
+name: Build Project
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    
+    # 安装 vcpkg
+    - name: Setup vcpkg
+      uses: microsoft/vcpkg-action@v1
+      with:
+        vcpkg_version: 'latest'
+
+    # 安装 Qt6 和其他依赖
+    - name: Install Qt6 using vcpkg
+      run: |
+        .\vcpkg install qt6-base qt6-tools qt6-qml
+
+    # 安装 Visual Studio (如果 GitHub Actions 上的 Windows 环境没有预装)
+    - name: Setup MSBuild and Visual Studio
+      uses: actions/setup-msbuild@v1
+      with:
+        msbuild-version: 'latest'
+
+    # 安装 vcpkg 依赖
+    - name: Install dependencies from vcpkg.json
+      run: |
+        .\vcpkg install --config-path .\vcpkg.json
+
+    # 设置 MSBuild 环境变量
+    - name: Setup environment variables
+      run: |
+        echo "VCPKG_ROOT=$(pwd)/vcpkg" >> $GITHUB_ENV
+        echo "PATH=$(pwd)/vcpkg:$PATH" >> $GITHUB_ENV
+        echo "CXXFLAGS=-I$(pwd)/vcpkg/installed/x64-windows/include" >> $GITHUB_ENV
+        echo "LIBS=-L$(pwd)/vcpkg/installed/x64-windows/lib" >> $GITHUB_ENV
+
+    # 使用 MSBuild 构建项目
+    - name: Build project using MSBuild
+      run: |
+        msbuild "Schedule.sln" /p:Configuration=Release /p:Platform=x64
