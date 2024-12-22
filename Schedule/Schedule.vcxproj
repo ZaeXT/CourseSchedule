@@ -58,7 +58,7 @@
     <QtBuildConfig>release</QtBuildConfig>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Action|x64'" Label="QtSettings">
-    <QtInstall>$(QTDIR)</QtInstall>
+    <QtInstall>$(QT_ROOT_DIR)</QtInstall>
     <QtModules>core;gui;widgets</QtModules>
     <QtBuildConfig>release</QtBuildConfig>
   </PropertyGroup>
