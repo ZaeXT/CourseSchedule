@@ -15,7 +15,13 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-    
+
+    # 设置MSBuild
+    - name: setup-msbuild
+      uses: microsoft/setup-msbuild@v2
+      with:
+        msbuild-architecture: x64
+          
     # 安装 vcpkg
     - name: Setup vcpkg
       run: |
@@ -30,10 +36,8 @@ jobs:
         host: windows
         version: 6.8.0
         setup-python: false
-
-    # 安装 Visual Studio (如果 GitHub Actions 上的 Windows 环境没有预装)
-    - name: Setup MSBuild and Visual Studio
-      uses: microsoft/setup-msbuild@v2
+        arch: 'win64_msvc2022_64'
+        cache: true
 
     # 安装 vcpkg 依赖
     - name: Install dependencies from vcpkg.json
@@ -46,7 +50,6 @@ jobs:
       run: |
         Invoke-WebRequest -Uri "https://download.qt.io/development_releases/vsaddin/3.3.1/qt-vsaddin-msbuild-3.3.1.zip" -OutFile "msbuild.zip"
         Expand-Archive -Path "msbuild.zip" -DestinationPath ".\Schedule\QtMsBuild"
-        ls ".\Schedule\"
 
     # 设置 MSBuild 环境变量
     - name: Setup environment variables
@@ -59,16 +62,7 @@ jobs:
         echo "QtMsBuild=$(pwd)/Schedule/QtMsBuild" >> $GITHUB_ENV # 设置 QtMsBuild 环境变量
         echo "PATH=$(pwd)/Schedule/QtMsBuild;$(pwd)/vcpkg;$PATH;%QTDIR%/bin" >> $GITHUB_ENV # 将 QtMsBuild 添加到 PATH
         
-    - name: Check QT_ROOT_DIR
-      run: |
-        echo "QT_ROOT_DIR=$QT_ROOT_DIR"
-
-    - name: Check MSBuild Version
-      run: |
-        msbuild -version
-
-        
     # 使用 MSBuild 构建项目
     - name: Build project using MSBuild
       run: |
-        msbuild "Schedule.sln" /p:Configuration=Release /p:Platform=x64
+        msbuild "Schedule.sln" /p:Configuration=Action /p:Platform=x64
