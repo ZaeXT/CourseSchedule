@@ -39,6 +39,16 @@ jobs:
         arch: 'win64_msvc2022_64'
         cache: true
 
+    - name: Set vcpkg binary cache directory
+      run: echo "VCPKG_DEFAULT_BINARY_CACHE=$(pwd)/vcpkg_binary_cache" >> $GITHUB_ENV
+
+    - name: Cache vcpkg binary cache
+      id: cache-vcpkg-binary
+      uses: actions/cache@v3
+      with:
+        path: vcpkg_binary_cache
+        key: ${{ runner.os }}-vcpkg-binary-${{ hashFiles('vcpkg.json') }}
+
     # 安装 vcpkg 依赖
     - name: Install dependencies from vcpkg.json
       run: |
@@ -66,3 +76,13 @@ jobs:
     - name: Build project using MSBuild
       run: |
         msbuild "Schedule.sln" /p:Configuration=Action /p:Platform=x64
+
+    - name: Deploy program using windeployqt
+      run: |
+        windeployqt x64/Action/Schedule.exe
+
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v4.5.0
+      with:
+        name: schedule-release
+        path: x64/Action/
