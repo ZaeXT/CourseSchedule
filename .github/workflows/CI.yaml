@@ -31,11 +31,13 @@ jobs:
         version: 6.8.0
         setup-python: false
         arch: 'win64_msvc2022_64'
-
-    # 安装 Visual Studio (如果 GitHub Actions 上的 Windows 环境没有预装)
-    - name: Setup MSBuild and Visual Studio
-      uses: microsoft/setup-msbuild@v2
-
+      env:
+        QT_ROOT_DIR: ${{ env.QT_ROOT_DIR }}
+        
+    - name: Write QT_ROOT_DIR to file
+      run: |
+        echo "QT_ROOT_DIR=$QT_ROOT_DIR" > qt_root_dir.txt
+        
     # 安装 vcpkg 依赖
     - name: Install dependencies from vcpkg.json
       run: |
@@ -48,6 +50,12 @@ jobs:
         Invoke-WebRequest -Uri "https://download.qt.io/development_releases/vsaddin/3.3.1/qt-vsaddin-msbuild-3.3.1.zip" -OutFile "msbuild.zip"
         Expand-Archive -Path "msbuild.zip" -DestinationPath ".\Schedule\QtMsBuild"
         ls ".\Schedule\"
+
+    - name: Read QT_ROOT_DIR from file
+      run: |
+       $qt_root_dir = Get-Content qt_root_dir.txt
+       echo "$qt_root_dir"
+       echo "QT_ROOT_DIR=$qt_root_dir" >> $GITHUB_ENV
 
     # 设置 MSBuild 环境变量
     - name: Setup environment variables
