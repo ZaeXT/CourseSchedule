@@ -15,7 +15,11 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-    
+
+    # 设置MSBuild
+    - name: setup-msbuild
+      uses: microsoft/setup-msbuild@v2
+          
     # 安装 vcpkg
     - name: Setup vcpkg
       run: |
