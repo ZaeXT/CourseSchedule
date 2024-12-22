@@ -7,10 +7,13 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Schedule", "Schedule\Schedu
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Action|x64 = Action|x64
 		Debug|x64 = Debug|x64
 		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EAB4A470-BF58-456F-9E6D-E2F6E644E760}.Action|x64.ActiveCfg = Action|x64
+		{EAB4A470-BF58-456F-9E6D-E2F6E644E760}.Action|x64.Build.0 = Action|x64
 		{EAB4A470-BF58-456F-9E6D-E2F6E644E760}.Debug|x64.ActiveCfg = Debug|x64
 		{EAB4A470-BF58-456F-9E6D-E2F6E644E760}.Debug|x64.Build.0 = Debug|x64
 		{EAB4A470-BF58-456F-9E6D-E2F6E644E760}.Release|x64.ActiveCfg = Release|x64
