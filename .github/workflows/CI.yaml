@@ -45,7 +45,8 @@ jobs:
       shell: pwsh
       run: |
         Invoke-WebRequest -Uri "https://download.qt.io/development_releases/vsaddin/3.3.1/qt-vsaddin-msbuild-3.3.1.zip" -OutFile "msbuild.zip"
-        Expand-Archive -Path "msbuild.zip" -DestinationPath "$GITHUB_WORKSPACE/Schedule/QtMsBuild"
+        Expand-Archive -Path "msbuild.zip" -DestinationPath "$GITHUB_WORKSPACE\Schedule\QtMsBuild"
+        pwd
         
 
     # 设置 MSBuild 环境变量
