@@ -28,7 +28,7 @@ jobs:
       uses: jurplel/install-qt-action@v4.1.1
       with:
         host: windows
-        version: 6.6.0
+        version: 6.8.0
         setup-python: false
 
     # 安装 Visual Studio (如果 GitHub Actions 上的 Windows 环境没有预装)
@@ -39,6 +39,14 @@ jobs:
     - name: Install dependencies from vcpkg.json
       run: |
         .\vcpkg\vcpkg install
+
+    # 安装 QtMsBuild
+    - name: Install QtMsBuild
+      shell: pwsh
+      run: |
+        Invoke-WebRequest -Uri "https://download.qt.io/development_releases/vsaddin/3.3.1/qt-vsaddin-msbuild-3.3.1.zip" -OutFile "msbuild.zip"
+        Expand-Archive -Path "msbuild.zip" -DestinationPath "QtMsBuild"
+        
 
     # 设置 MSBuild 环境变量
     - name: Setup environment variables
