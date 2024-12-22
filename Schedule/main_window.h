@@ -6,6 +6,7 @@
 #include <QSystemTrayIcon>
 #include <QTimer>
 #include <QWidget>
+#include <QDate>
 #include <wintoastlib.h>
 
 #include "ConfigDialog.h"
