@@ -4,19 +4,22 @@
 #include <QFile>
 #include <QJsonObject>
 #include <QJsonDocument>
+#include <QJsonArray>
 #include <QDir>
 #include "configData.h"
-
-class ConfigManager : public QObject
+#include "ScheduleData.h"
+class FileManager : public QObject
 {
     Q_OBJECT
 
 public:
-    explicit ConfigManager(QObject* parent = nullptr);
+    explicit FileManager(QObject* parent = nullptr);
 
     void saveConfig();  // 保存配置到文件
     void loadConfig();  // 从文件加载配置
+    void saveData();
+    void loadData();
 
 private:
-    QString getConfigFilePath(); // 获取配置文件路径
+    QString getFilePath(QString fileName); // 获取配置文件路径
 };

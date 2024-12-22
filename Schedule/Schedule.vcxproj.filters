@@ -32,9 +32,6 @@
     <QtMoc Include="Schedule.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <ClCompile Include="Schedule.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -43,7 +40,19 @@
     <ClCompile Include="ConfigDialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ConfigManager.cpp">
+    <ClCompile Include="FileManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main_window.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Schedule.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="toast_handler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ScheduleData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -51,12 +60,21 @@
     <QtMoc Include="ConfigDialog.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="ConfigManager.h">
+    <QtMoc Include="FileManager.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConfigData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="main_window.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="toast_handler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ScheduleData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -7,8 +7,12 @@
 #include <QCheckBox>
 #include <QSpinBox>
 #include <QComboBox>
+#include <QTabWidget>
+#include <QTableWidget>
+#include <QColorDialog>
 #include "ConfigData.h"
-#include "ConfigManager.h"
+#include "ScheduleData.h"
+#include "FileManager.h"
 
 class config_dialog final : public QDialog
 {
@@ -19,11 +23,20 @@ public:
 
 private slots:
 	void saveConfig();
+	void saveData();
 	void loadConfig();
+	void loadData();
+	void createConfigPage(QWidget* page);
+	void createDataPage(QWidget* page);
+	void updateCourseTable();
+	void updateColorButton();
+	void openColorDialog();
+	void updateFontSize(int fontSize);
 
 private:
-	ConfigManager configManager;
+	FileManager fileManager;
 	QCheckBox* notifyCheckBox;
+	QCheckBox* onTopCheckBox;
 	QSpinBox* breakTimeSpinBox;
 	QCheckBox* showBreakTimeCheckBox;
 	QSpinBox* courseCircleSpinBox;
@@ -34,4 +47,12 @@ private:
 	QSpinBox* yOffsetSpinBox;
 	QCheckBox* spacelineCheckBox;
 	QCheckBox* rgbCheckBox;
+	QTabWidget* tabWidget;
+	QWidget* configPage;
+	QWidget* dataPage;
+	QTableWidget* courseTableWidget;
+	QColor defaultTextColor;
+	QPushButton* colorPickerButton;
+	int defaultFontSize;
+	QSpinBox* fontSizeSpinBox;
 };
